@@ -276,19 +276,34 @@ Further data collection focusing on actual time requirements, student demographi
 
 ## References
 
-- Ardasheva, Y., Tong, S. S., & Tretter, T. R. (2017). English Language Learner experiences in academic contexts. *Learning and Individual Differences*, 58, 22-36.
-- Bloom, B. S. (1974). Time and learning. *American Psychologist*, 29(9), 682-688.
-- Carroll, J. B. (1993). Human cognitive abilities: A survey of factor-analytic studies. Cambridge University Press.
-- Caruso, C. C. (2014). Negative impacts of shiftwork and long work hours. *Rehabilitation Nursing*, 39(1), 16-25.
-- Dante, A., Valoppi, G., Saiani, L., & Palese, A. (2013). Factors associated with nursing students' academic success or failure. *Nurse Education Today*, 33(2), 153-157.
-- Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving students' learning with effective learning techniques. *Psychological Science in the Public Interest*, 14(1), 4-58.
-- European Union. (2003). Directive 2003/88/EC concerning certain aspects of the organisation of working time.
-- Jeffreys, M. R. (2012). Nursing student retention: Understanding the process and making a difference. Springer Publishing.
-- Marton, F., & Säljö, R. (1976). On qualitative differences in learning. *British Journal of Educational Psychology*, 46(1), 4-11.
-- National Institute for Occupational Safety and Health (NIOSH). (2020). Work schedules: Shift work and long hours.
-- Nonis, S., & Hudson, G. I. (2006). Academic performance of college students: Influence of study time and employment. *Journal of Education for Business*, 81(3), 151-159.
-- O'Brien, F., Keogh, B., & Neenan, K. (2019). Mature students' experiences of undergraduate nurse education programmes. *Nurse Education Today*, 77, 44-50.
-- Salamonson, Y., & Andrew, S. (2006). Academic performance in nursing students. *Nurse Education Today*, 26(4), 364-371.
+- American Academy of Sleep Medicine. (2015). Recommendations for amount of sleep. *Sleep*, 38(6), 843-844. https://doi.org/10.5665/sleep.4716
+- Ardasheva, Y., Tong, S. S., & Tretter, T. R. (2017). Validating the English Language Learner Motivation Scale (ELLMS). *Learning and Individual Differences*, 58, 22-36. https://doi.org/10.1016/j.lindif.2017.10.004
+- Bloom, B. S. (1974). Time and learning. *American Psychologist*, 29(9), 682-688. https://doi.org/10.1037/h0037632
+- Carroll, J. B. (1993). Human cognitive abilities: A survey of factor-analytic studies. Cambridge University Press. https://doi.org/10.1017/CBO9780511571312
+- Caruso, C. C. (2014). Negative impacts of shiftwork and long work hours. *Rehabilitation Nursing*, 39(1), 16-25. https://doi.org/10.1002/rnj.107
+- Cowan, N. (2001). The magical number 4 in short-term memory: A reconsideration of mental storage capacity. *Behavioral and Brain Sciences*, 24(1), 87-114. https://doi.org/10.1017/S0140525X01003922
+- Dante, A., Valoppi, G., Saiani, L., & Palese, A. (2013). Factors associated with nursing students' academic success or failure. *Nurse Education Today*, 33(2), 153-157. https://doi.org/10.1016/j.nedt.2012.04.001
+- Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving students' learning with effective learning techniques. *Psychological Science in the Public Interest*, 14(1), 4-58. https://doi.org/10.1177/1529100612453266
+- Embretson, S. E., & Reise, S. P. (2000). Item response theory. Psychology Press. https://doi.org/10.4324/9781410605269
+- European Union. (2003). Directive 2003/88/EC concerning certain aspects of the organisation of working time. https://eur-lex.europa.eu/eli/dir/2003/88/oj
+- Fernández-Alonso, R., Suárez-Álvarez, J., & Muñiz, J. (2015). Adolescents' homework performance in mathematics and science. *Journal of Educational Psychology*, 107(4), 1075-1085. http://dx.doi.org/10.1037/edu0000032
+- INACSL Standards Committee. (2021). INACSL standards of best practice: Simulation design. *Clinical Simulation in Nursing*, 58, 22-32. https://doi.org/10.1016/j.ecns.2021.08.009
+- Jeffreys, M. R. (2012). Nursing student retention: Understanding the process and making a difference. Springer Publishing. https://doi.org/10.1891/9780826109422
+- Klatt, E. C., & Klatt, C. A. (2011). How much is too much reading for medical students? *Academic Medicine*, 86(9), 1079-1083. https://doi.org/10.1097/ACM.0b013e31822579fc
+- Landrigan, C. P., Rothschild, J. M., Cronin, J. W., Kaushal, R., Burdick, E., Katz, J. T., ... & Czeisler, C. A. (2004). Effect of reducing interns' work hours on serious medical errors in intensive care units. *New England Journal of Medicine*, 351(18), 1838-1848. https://doi.org/10.1056/NEJMoa041406
+- Marton, F., & Säljö, R. (1976). On qualitative differences in learning: I—Outcome and process. *British Journal of Educational Psychology*, 46(1), 4-11. https://doi.org/10.1111/j.2044-8279.1976.tb02980.x
+- Monsell, S. (2003). Task switching. *Trends in Cognitive Sciences*, 7(3), 134-140. https://doi.org/10.1016/S1364-6613(03)00028-7
+- Murphy, D. H., Hoover, K. M., Agadzhanyan, K., Kuehn, J. C., & Castel, A. D. (2022). Learning in double time: The effect of lecture video speed on immediate and delayed comprehension. *Applied Cognitive Psychology*, 36(1), 69-82. https://doi.org/10.1002/acp.3899
+- National Institute for Occupational Safety and Health (NIOSH). (2020). Work schedules: Shift work and long hours. https://www.cdc.gov/niosh/topics/workschedules/
+- Nonis, S., & Hudson, G. I. (2006). Academic performance of college students: Influence of study time and employment. *Journal of Education for Business*, 81(3), 151-159. https://doi.org/10.3200/JOEB.81.3.151-159
+- O'Brien, F., Keogh, B., & Neenan, K. (2019). Mature students' experiences of undergraduate nurse education programmes. *Nurse Education Today*, 77, 44-50. https://doi.org/10.1016/j.nedt.2019.03.006
+- Payne, L. K., Glaspie, T., & Rosser, C. (2014). Comparison of select outcomes between traditional and accelerated BSN programs: A systematic review. *Nursing Education Perspectives*, 35(3), 146-151. https://doi.org/10.5480/12-988.1
+- Rayner, K., Schotter, E. R., Masson, M. E., Potter, M. C., & Treiman, R. (2016). So much to read, so little time: How do we read, and can speed reading help? *Psychological Science in the Public Interest*, 17(1), 4-34. https://doi.org/10.1177/1529100615623267
+- Salamonson, Y., & Andrew, S. (2006). Academic performance in nursing students: Influence of time factors and employment status. *Nurse Education Today*, 26(4), 364-371. https://doi.org/10.1016/j.nedt.2005.10.008
+- Stimpfel, A. W., Fletcher, J., & Kovner, C. T. (2019). A comparison of scheduling, work hours, overtime, and work preferences across four cohorts of newly licensed registered nurses. *Journal of Advanced Nursing*, 75(9), 1902-1910. https://doi.org/10.1111/jan.13972
+- Sweller, J., van Merriënboer, J. J., & Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. *Educational Psychology Review*, 31(2), 261-292. https://doi.org/10.1007/s10648-019-09465-5
+- van der Linden, D., Frese, M., & Meijman, T. F. (2003). Mental fatigue and the control of cognitive processes: Effects on perseveration and planning. *Acta Psychologica*, 113(1), 45-65. https://doi.org/10.1016/S0001-6918(02)00150-6
+- Zhang, X., Tai, D., Pforsich, H., & Lin, V. W. (2018). United States registered nurse workforce report card and shortage forecast: A revisit. *American Journal of Medical Quality*, 33(3), 229-236. https://doi.org/10.1177/1062860617738328
 
 """
 
