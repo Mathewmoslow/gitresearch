@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -26,8 +25,11 @@ OUT.mkdir(parents=True, exist_ok=True)
 # Load and process data
 df = pd.read_csv(RAW, sep=None, engine="python")
 
-# Convert date and add week number
-df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+# Fix date format - replace underscore with space
+df["Date"] = df["Date"].str.replace('_', ' ')
+df["Date"] = pd.to_datetime(df["Date"], format="%Y-%m-%d %H:%M:%S", errors="coerce")
+
+# Add week number
 df["Week"] = df["Date"].dt.isocalendar().week
 
 # Convert duration to hours
