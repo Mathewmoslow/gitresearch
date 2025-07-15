@@ -4,21 +4,24 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
 
-# Load data
-rollup = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
-tasktype = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv")
+# Define paths
+BASE_OUT = Path.home() / "Documents/gitresearch_outputs/analysis-baseline"
 
-# CORRECT: Calculate total hours by course
+# Load data
+rollup = pd.read_csv(BASE_OUT / "weekly_rollup.csv")
+tasktype = pd.read_csv(BASE_OUT / "tasktype_by_course.csv")
+
+# Calculate total hours by course
 print("\n=== TOTAL HOURS BY COURSE ===")
 total_by_course = rollup.groupby("Course")["duration_hours"].sum().reset_index()
-total_by_course.columns = ["Course", "Total_duration_hours"]
-total_by_course["over_limit"] = total_by_course["Total_duration_hours"] > 50  # reasonable limit per course
-total_by_course = total_by_course.sort_values("Total_duration_hours", ascending=False)
+total_by_course.columns = ["Course", "Total_Hours"]
+total_by_course["over_limit"] = total_by_course["Total_Hours"] > 50  # reasonable limit per course
+total_by_course = total_by_course.sort_values("Total_Hours", ascending=False)
 print(total_by_course)
 
-# CORRECT: Calculate weekly totals (sum across all courses)
+# Calculate weekly totals (sum across all courses)
 weekly_totals = rollup.groupby("Week")["duration_hours"].sum().reset_index()
-weekly_totals.columns = ["Week", "duration_hours"]  # Rename for consistency
+weekly_totals.columns = ["Week", "duration_hours"]  # Keep consistent naming
 print(f"\n=== WEEKLY SUMMARY ===")
 print(f"Average weekly hours (across all courses): {weekly_totals['duration_hours'].mean():.1f}")
 print(f"Min weekly hours: {weekly_totals['duration_hours'].min():.1f}")
@@ -36,7 +39,7 @@ plt.ylabel('Total Hours')
 plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 
-output_path = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_stack_chart.png")
+output_path = BASE_OUT / "weekly_stack_chart.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.close()
 
@@ -51,4 +54,4 @@ else:
     print(f"\n✅ No weeks exceed the federal 40h limit")
 
 # Save weekly totals for other analyses
-weekly_totals.to_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_totals.csv", index=False)
+weekly_totals.to_csv(BASE_OUT / "weekly_totals.csv", index=False)
