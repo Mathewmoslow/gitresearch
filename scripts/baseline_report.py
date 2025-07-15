@@ -10,14 +10,15 @@ tasktype = pd.read_csv("outputs/analysis-baseline/tasktype_by_course.csv")
 
 # CORRECT: Calculate total hours by course
 print("\n=== TOTAL HOURS BY COURSE ===")
-total_by_course = rollup.groupby("Course")["duration_hours"].sum().reset_index()
+total_by_course = rollup.groupby("Course")["Hours"].sum().reset_index()
 total_by_course.columns = ["Course", "Total_Hours"]
 total_by_course["over_limit"] = total_by_course["Total_Hours"] > 50  # reasonable limit per course
 total_by_course = total_by_course.sort_values("Total_Hours", ascending=False)
 print(total_by_course)
 
 # CORRECT: Calculate weekly totals (sum across all courses)
-weekly_totals = rollup.groupby("Week")["duration_hours"].sum().reset_index()
+weekly_totals = rollup.groupby("Week")["Hours"].sum().reset_index()
+weekly_totals.columns = ["Week", "duration_hours"]  # Rename for consistency
 print(f"\n=== WEEKLY SUMMARY ===")
 print(f"Average weekly hours (across all courses): {weekly_totals['duration_hours'].mean():.1f}")
 print(f"Min weekly hours: {weekly_totals['duration_hours'].min():.1f}")
@@ -25,7 +26,7 @@ print(f"Max weekly hours: {weekly_totals['duration_hours'].max():.1f}")
 
 # Create stacked bar chart showing breakdown by course
 plt.figure(figsize=(12, 6))
-pivot_data = rollup.pivot(index='Week', columns='Course', values='duration_hours').fillna(0)
+pivot_data = rollup.pivot(index='Week', columns='Course', values='Hours').fillna(0)
 pivot_data.plot(kind='bar', stacked=True, figsize=(12, 6))
 plt.axhline(y=40, color='r', linestyle='--', label='Federal 40h limit')
 plt.axhline(y=20, color='orange', linestyle='--', label='Federal 20h limit', alpha=0.7)

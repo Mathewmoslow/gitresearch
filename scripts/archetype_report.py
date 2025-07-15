@@ -18,7 +18,7 @@ multipliers = {
 scenarios = {}
 for archetype, mult in multipliers.items():
     df = baseline.copy()
-    df['duration_hours'] = df['duration_hours'] * mult
+    df['Hours'] = df['Hours'] * mult
     df['archetype'] = archetype
     scenarios[archetype] = df
 
@@ -29,7 +29,7 @@ all_scenarios = pd.concat(scenarios.values())
 plt.figure(figsize=(12, 6))
 for archetype, mult in multipliers.items():
     data = scenarios[archetype]
-    weekly = data.groupby('Week')['duration_hours'].sum()
+    weekly = data.groupby('Week')['Hours'].sum()
     plt.plot(weekly.index, weekly.values, marker='o', label=f'{archetype.title()} (×{mult})')
 
 plt.axhline(y=40, color='r', linestyle='--', label='Federal 40h limit')
@@ -44,13 +44,16 @@ plt.tight_layout()
 # Save outputs
 output_dir = Path("outputs/analysis-archetypes")
 plt.savefig(output_dir / "archetype_chart.png", dpi=300, bbox_inches='tight')
+
+# Rename Hours to duration_hours for consistency in saved file
+all_scenarios = all_scenarios.rename(columns={'Hours': 'duration_hours'})
 all_scenarios.to_csv(output_dir / "adjusted_rollup.csv", index=False)
 
 # Print summary
 print("\n=== ARCHETYPE ANALYSIS SUMMARY ===")
 for archetype in multipliers:
     scenario_data = scenarios[archetype]
-    weekly_totals = scenario_data.groupby('Week')['duration_hours'].sum()
+    weekly_totals = scenario_data.groupby('Week')['Hours'].sum()
     print(f"\n{archetype.upper()} students:")
     print(f"  Average weekly hours: {weekly_totals.mean():.1f}")
     print(f"  Weeks over 40h: {(weekly_totals > 40).sum()}")
