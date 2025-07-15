@@ -4,8 +4,12 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import numpy as np
 
+# Define paths
+ARCH_OUT = Path.home() / "Documents/gitresearch_outputs/analysis-archetypes"
+ARCH_OUT.mkdir(parents=True, exist_ok=True)
+
 # Load baseline data
-baseline = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-archetypes/weekly_rollup.csv")
+baseline = pd.read_csv(ARCH_OUT / "weekly_rollup.csv")
 
 # Define archetype multipliers
 multipliers = {
@@ -42,12 +46,8 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
 # Save outputs
-output_dir = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-archetypes")
-plt.savefig(output_dir / "archetype_chart.png", dpi=300, bbox_inches='tight')
-
-# Rename duration_hours to duration_hours for consistency in saved file
-all_scenarios = all_scenarios.rename(columns={'duration_hours': 'duration_hours'})
-all_scenarios.to_csv(output_dir / "adjusted_rollup.csv", index=False)
+plt.savefig(ARCH_OUT / "archetype_chart.png", dpi=300, bbox_inches='tight')
+all_scenarios.to_csv(ARCH_OUT / "adjusted_rollup.csv", index=False)
 
 # Print summary
 print("\n=== ARCHETYPE ANALYSIS SUMMARY ===")
