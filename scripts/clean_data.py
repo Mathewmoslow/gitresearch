@@ -40,7 +40,7 @@ df["duration_hours"] = df["Duration_Cleaned"].apply(to_hours)
 weekly = (
     df.groupby(["Week", "Course"], dropna=False)
       .agg(Task_Count=("UniqueID", "size"),
-           Hours=("duration_hours", "sum"))
+           duration_hours=("duration_hours", "sum"))
       .reset_index()
       .sort_values(["Week", "Course"])
 )
@@ -48,7 +48,7 @@ weekly = (
 tasktype = (
     df.groupby(["Course", "Type"], dropna=False)
       .agg(Task_Count=("UniqueID", "size"),
-           Hours=("duration_hours", "sum"),
+           duration_hours=("duration_hours", "sum"),
            With_Duration=("duration_hours", "count"))
       .reset_index()
       .sort_values(["Course", "Type"])

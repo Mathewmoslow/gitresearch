@@ -45,8 +45,8 @@ plt.tight_layout()
 output_dir = Path("outputs/analysis-archetypes")
 plt.savefig(output_dir / "archetype_chart.png", dpi=300, bbox_inches='tight')
 
-# Rename Hours to duration_hours for consistency in saved file
-all_scenarios = all_scenarios.rename(columns={'Hours': 'duration_hours'})
+# Rename duration_hours to duration_hours for consistency in saved file
+all_scenarios = all_scenarios.rename(columns={'duration_hours': 'duration_hours'})
 all_scenarios.to_csv(output_dir / "adjusted_rollup.csv", index=False)
 
 # Print summary
