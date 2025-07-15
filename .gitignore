@@ -1,2 +1,45 @@
+# Output files (now external, but just in case)
 outputs/
+output/
+
+# System files
 .DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Data files (if large)
+*.csv.gz
+*.xlsx
+*.xls
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
