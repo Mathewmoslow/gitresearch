@@ -1,14 +1,60 @@
-import pandas as pd, matplotlib.pyplot as plt, os, json
+#!/usr/bin/env python3
+import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+import numpy as np
 
-rollup = pd.read_csv("outputs/analysis-baseline/weekly_rollup.csv")
-# example multipliers—adjust as needed
-mult = {"Adult_310":1.2,"OBGYN_330":1.3,"Gerontology_315":1.1,"NCLEX_335":1.4}
-rollup["adj_hours"] = rollup.apply(lambda r: r["duration_hours"]*mult.get(r["Course"],1), axis=1)
+# Load baseline data
+baseline = pd.read_csv("outputs/analysis-archetypes/weekly_rollup.csv")
 
-os.makedirs("outputs/analysis-archetypes", exist_ok=True)
-rollup.to_csv("outputs/analysis-archetypes/adjusted_rollup.csv", index=False)
+# Define archetype multipliers
+multipliers = {
+    "struggling": 1.3,    # Takes 30% longer
+    "average": 1.0,       # Baseline
+    "efficient": 0.8      # 20% faster
+}
 
-summ = rollup.groupby("Course")["adj_hours"].sum().reset_index()
-plt.bar(summ["Course"], summ["adj_hours"]); plt.xticks(rotation=45); plt.tight_layout()
-plt.savefig("outputs/analysis-archetypes/archetype_chart.png", dpi=300); plt.close()
-print("✅ Archetype analysis saved.")
+# Apply multipliers and create scenarios
+scenarios = {}
+for archetype, mult in multipliers.items():
+    df = baseline.copy()
+    df['duration_hours'] = df['duration_hours'] * mult
+    df['archetype'] = archetype
+    scenarios[archetype] = df
+
+# Combine all scenarios
+all_scenarios = pd.concat(scenarios.values())
+
+# Calculate weekly totals for each archetype
+plt.figure(figsize=(12, 6))
+for archetype, mult in multipliers.items():
+    data = scenarios[archetype]
+    weekly = data.groupby('Week')['duration_hours'].sum()
+    plt.plot(weekly.index, weekly.values, marker='o', label=f'{archetype.title()} (×{mult})')
+
+plt.axhline(y=40, color='r', linestyle='--', label='Federal 40h limit')
+plt.axhline(y=20, color='orange', linestyle='--', label='Federal 20h limit', alpha=0.7)
+plt.xlabel('Week')
+plt.ylabel('Total Hours')
+plt.title('Weekly Hours by Student Archetype')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+
+# Save outputs
+output_dir = Path("outputs/analysis-archetypes")
+plt.savefig(output_dir / "archetype_chart.png", dpi=300, bbox_inches='tight')
+all_scenarios.to_csv(output_dir / "adjusted_rollup.csv", index=False)
+
+# Print summary
+print("\n=== ARCHETYPE ANALYSIS SUMMARY ===")
+for archetype in multipliers:
+    scenario_data = scenarios[archetype]
+    weekly_totals = scenario_data.groupby('Week')['duration_hours'].sum()
+    print(f"\n{archetype.upper()} students:")
+    print(f"  Average weekly hours: {weekly_totals.mean():.1f}")
+    print(f"  Weeks over 40h: {(weekly_totals > 40).sum()}")
+    print(f"  Max weekly hours: {weekly_totals.max():.1f}")
+
+print("\n✅ Archetype analysis saved.")
+plt.close()
