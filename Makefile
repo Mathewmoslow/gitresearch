@@ -23,13 +23,13 @@ baseline: clean
 
 archetypes: clean
 	@git checkout analysis-archetypes
-	cp outputs/analysis-baseline/weekly_rollup.csv outputs/analysis-archetypes/ || true
+	cp ~/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv ~/Documents/gitresearch_outputs/analysis-archetypes/ || true
 	$(PY) $(ARCH)
 	$(PY) $(AUTO) analysis-archetypes "archetype run $(DATETIME)"
 
 simulation: clean
 	@git checkout analysis-simulation
-	cp outputs/analysis-baseline/weekly_rollup.csv outputs/analysis-simulation/ || true
+	cp ~/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv ~/Documents/gitresearch_outputs/analysis-simulation/ || true
 	$(PY) $(SIM)
 	$(PY) $(AUTO) analysis-simulation "simulation run $(DATETIME)"
 
