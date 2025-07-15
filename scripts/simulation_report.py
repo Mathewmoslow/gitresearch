@@ -6,12 +6,12 @@ from pathlib import Path
 import numpy as np
 
 # Ensure output directory exists
-output_dir = Path("outputs/analysis-simulation")
+output_dir = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-simulation")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # Load baseline data
 print("Loading baseline data...")
-baseline = pd.read_csv("outputs/analysis-baseline/weekly_rollup.csv")
+baseline = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
 
 # CRITICAL: Aggregate to weekly totals first
 weekly_totals = baseline.groupby('Week')['duration_hours'].sum().reset_index()

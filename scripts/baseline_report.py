@@ -5,8 +5,8 @@ import seaborn as sns
 from pathlib import Path
 
 # Load data
-rollup = pd.read_csv("outputs/analysis-baseline/weekly_rollup.csv")
-tasktype = pd.read_csv("outputs/analysis-baseline/tasktype_by_course.csv")
+rollup = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
+tasktype = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv")
 
 # CORRECT: Calculate total hours by course
 print("\n=== TOTAL HOURS BY COURSE ===")
@@ -36,7 +36,7 @@ plt.ylabel('Total Hours')
 plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 
-output_path = Path("outputs/analysis-baseline/weekly_stack_chart.png")
+output_path = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_stack_chart.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.close()
 
@@ -51,4 +51,4 @@ else:
     print(f"\n✅ No weeks exceed the federal 40h limit")
 
 # Save weekly totals for other analyses
-weekly_totals.to_csv("outputs/analysis-baseline/weekly_totals.csv", index=False)
+weekly_totals.to_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_totals.csv", index=False)

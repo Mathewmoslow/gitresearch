@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 
 # Load baseline data
-baseline = pd.read_csv("outputs/analysis-archetypes/weekly_rollup.csv")
+baseline = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-archetypes/weekly_rollup.csv")
 
 # Define archetype multipliers
 multipliers = {
@@ -42,7 +42,7 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
 # Save outputs
-output_dir = Path("outputs/analysis-archetypes")
+output_dir = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-archetypes")
 plt.savefig(output_dir / "archetype_chart.png", dpi=300, bbox_inches='tight')
 
 # Rename duration_hours to duration_hours for consistency in saved file

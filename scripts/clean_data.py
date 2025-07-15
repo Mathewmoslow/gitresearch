@@ -8,15 +8,15 @@ clean_data.py  –  Baseline pipeline for Paper 1
      - Week            (ISO week number derived from Date)
 3. Writes cleaned and roll‑ups:
      data/tasks_cleaned.csv
-     outputs/analysis-baseline/weekly_rollup.csv
-     outputs/analysis-baseline/tasktype_by_course.csv
+     ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv
+     ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv
 """
 
 import pandas as pd
 import pathlib
 
 RAW  = pathlib.Path("data/Cleaned_Master_text.txt")
-OUT  = pathlib.Path("outputs/analysis-baseline")
+OUT  = pathlib.Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline")
 OUT.mkdir(parents=True, exist_ok=True)
 
 # --------------------------------------------------
@@ -61,5 +61,5 @@ tasktype.to_csv(OUT / "tasktype_by_course.csv", index=False)
 
 print("✅ Cleaning + roll‑ups complete.")
 print("   - data/tasks_cleaned.csv")
-print("   - outputs/analysis-baseline/weekly_rollup.csv")
-print("   - outputs/analysis-baseline/tasktype_by_course.csv")
+print("   - ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
+print("   - ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv")
