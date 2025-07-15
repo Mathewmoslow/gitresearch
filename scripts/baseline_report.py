@@ -11,26 +11,42 @@ BASE_OUT = Path.home() / "Documents/gitresearch_outputs/analysis-baseline"
 rollup = pd.read_csv(BASE_OUT / "weekly_rollup.csv")
 tasktype = pd.read_csv(BASE_OUT / "tasktype_by_course.csv")
 
+# Check if data is empty
+if len(rollup) == 0:
+    print("⚠️  WARNING: No data found in weekly_rollup.csv")
+    print("Creating placeholder data to prevent pipeline failure...")
+    # Create minimal placeholder data
+    rollup = pd.DataFrame({
+        'Week': [1],
+        'Course': ['NO_DATA'],
+        'Task_Count': [0],
+        'duration_hours': [0]
+    })
+
 # Calculate total hours by course
 print("\n=== TOTAL HOURS BY COURSE ===")
 total_by_course = rollup.groupby("Course")["duration_hours"].sum().reset_index()
 total_by_course.columns = ["Course", "Total_Hours"]
-total_by_course["over_limit"] = total_by_course["Total_Hours"] > 50  # reasonable limit per course
+total_by_course["over_limit"] = total_by_course["Total_Hours"] > 50
 total_by_course = total_by_course.sort_values("Total_Hours", ascending=False)
 print(total_by_course)
 
 # Calculate weekly totals (sum across all courses)
 weekly_totals = rollup.groupby("Week")["duration_hours"].sum().reset_index()
-weekly_totals.columns = ["Week", "duration_hours"]  # Keep consistent naming
+weekly_totals.columns = ["Week", "duration_hours"]
 print(f"\n=== WEEKLY SUMMARY ===")
 print(f"Average weekly hours (across all courses): {weekly_totals['duration_hours'].mean():.1f}")
 print(f"Min weekly hours: {weekly_totals['duration_hours'].min():.1f}")
 print(f"Max weekly hours: {weekly_totals['duration_hours'].max():.1f}")
 
-# Create stacked bar chart showing breakdown by course
+# Create stacked bar chart
 plt.figure(figsize=(12, 6))
-pivot_data = rollup.pivot(index='Week', columns='Course', values='duration_hours').fillna(0)
-pivot_data.plot(kind='bar', stacked=True, figsize=(12, 6))
+if len(rollup) > 1:  # Only plot if we have real data
+    pivot_data = rollup.pivot(index='Week', columns='Course', values='duration_hours').fillna(0)
+    pivot_data.plot(kind='bar', stacked=True, figsize=(12, 6))
+else:
+    plt.text(0.5, 0.5, 'No Data Available', ha='center', va='center', fontsize=20)
+    
 plt.axhline(y=40, color='r', linestyle='--', label='Federal 40h limit')
 plt.axhline(y=20, color='orange', linestyle='--', label='Federal 20h limit', alpha=0.7)
 plt.title('Weekly Workload by Course')
@@ -53,5 +69,5 @@ if not over_limit.empty:
 else:
     print(f"\n✅ No weeks exceed the federal 40h limit")
 
-# Save weekly totals for other analyses
+# Save weekly totals
 weekly_totals.to_csv(BASE_OUT / "weekly_totals.csv", index=False)
