@@ -8,15 +8,15 @@ clean_data.py  –  Baseline pipeline for Paper 1
      - Week            (ISO week number derived from Date)
 3. Writes cleaned and roll‑ups:
      data/tasks_cleaned.csv
-     outputs/analysis-baseline/weekly_rollup.csv
-     outputs/analysis-baseline/tasktype_by_course.csv
+     ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv
+     ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv
 """
 
 import pandas as pd
 import pathlib
 
 RAW  = pathlib.Path("data/Cleaned_Master_text.txt")
-OUT  = pathlib.Path("outputs/analysis-baseline")
+OUT  = pathlib.Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline")
 OUT.mkdir(parents=True, exist_ok=True)
 
 # --------------------------------------------------
@@ -40,7 +40,7 @@ df["duration_hours"] = df["Duration_Cleaned"].apply(to_hours)
 weekly = (
     df.groupby(["Week", "Course"], dropna=False)
       .agg(Task_Count=("UniqueID", "size"),
-           Hours=("duration_hours", "sum"))
+           duration_hours=("duration_hours", "sum"))
       .reset_index()
       .sort_values(["Week", "Course"])
 )
@@ -48,7 +48,7 @@ weekly = (
 tasktype = (
     df.groupby(["Course", "Type"], dropna=False)
       .agg(Task_Count=("UniqueID", "size"),
-           Hours=("duration_hours", "sum"),
+           duration_hours=("duration_hours", "sum"),
            With_Duration=("duration_hours", "count"))
       .reset_index()
       .sort_values(["Course", "Type"])
@@ -61,5 +61,5 @@ tasktype.to_csv(OUT / "tasktype_by_course.csv", index=False)
 
 print("✅ Cleaning + roll‑ups complete.")
 print("   - data/tasks_cleaned.csv")
-print("   - outputs/analysis-baseline/weekly_rollup.csv")
-print("   - outputs/analysis-baseline/tasktype_by_course.csv")
+print("   - ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
+print("   - ~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv")

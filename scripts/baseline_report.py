@@ -5,19 +5,19 @@ import seaborn as sns
 from pathlib import Path
 
 # Load data
-rollup = pd.read_csv("outputs/analysis-baseline/weekly_rollup.csv")
-tasktype = pd.read_csv("outputs/analysis-baseline/tasktype_by_course.csv")
+rollup = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
+tasktype = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/tasktype_by_course.csv")
 
 # CORRECT: Calculate total hours by course
 print("\n=== TOTAL HOURS BY COURSE ===")
-total_by_course = rollup.groupby("Course")["Hours"].sum().reset_index()
-total_by_course.columns = ["Course", "Total_Hours"]
-total_by_course["over_limit"] = total_by_course["Total_Hours"] > 50  # reasonable limit per course
-total_by_course = total_by_course.sort_values("Total_Hours", ascending=False)
+total_by_course = rollup.groupby("Course")["duration_hours"].sum().reset_index()
+total_by_course.columns = ["Course", "Total_duration_hours"]
+total_by_course["over_limit"] = total_by_course["Total_duration_hours"] > 50  # reasonable limit per course
+total_by_course = total_by_course.sort_values("Total_duration_hours", ascending=False)
 print(total_by_course)
 
 # CORRECT: Calculate weekly totals (sum across all courses)
-weekly_totals = rollup.groupby("Week")["Hours"].sum().reset_index()
+weekly_totals = rollup.groupby("Week")["duration_hours"].sum().reset_index()
 weekly_totals.columns = ["Week", "duration_hours"]  # Rename for consistency
 print(f"\n=== WEEKLY SUMMARY ===")
 print(f"Average weekly hours (across all courses): {weekly_totals['duration_hours'].mean():.1f}")
@@ -26,7 +26,7 @@ print(f"Max weekly hours: {weekly_totals['duration_hours'].max():.1f}")
 
 # Create stacked bar chart showing breakdown by course
 plt.figure(figsize=(12, 6))
-pivot_data = rollup.pivot(index='Week', columns='Course', values='Hours').fillna(0)
+pivot_data = rollup.pivot(index='Week', columns='Course', values='duration_hours').fillna(0)
 pivot_data.plot(kind='bar', stacked=True, figsize=(12, 6))
 plt.axhline(y=40, color='r', linestyle='--', label='Federal 40h limit')
 plt.axhline(y=20, color='orange', linestyle='--', label='Federal 20h limit', alpha=0.7)
@@ -36,7 +36,7 @@ plt.ylabel('Total Hours')
 plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 
-output_path = Path("outputs/analysis-baseline/weekly_stack_chart.png")
+output_path = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_stack_chart.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.close()
 
@@ -51,4 +51,4 @@ else:
     print(f"\n✅ No weeks exceed the federal 40h limit")
 
 # Save weekly totals for other analyses
-weekly_totals.to_csv("outputs/analysis-baseline/weekly_totals.csv", index=False)
+weekly_totals.to_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_totals.csv", index=False)

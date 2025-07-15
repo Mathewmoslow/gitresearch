@@ -6,17 +6,17 @@ from pathlib import Path
 import numpy as np
 
 # Ensure output directory exists
-output_dir = Path("outputs/analysis-simulation")
+output_dir = Path.home() / "Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-simulation")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # Load baseline data
 print("Loading baseline data...")
-baseline = pd.read_csv("outputs/analysis-baseline/weekly_rollup.csv")
+baseline = pd.read_csv("~/Documents/Documents/gitresearch_~/Documents/Documents/gitresearch_outputs/analysis-baseline/weekly_rollup.csv")
 
 # CRITICAL: Aggregate to weekly totals first
-weekly_totals = baseline.groupby('Week')['Hours'].sum().reset_index()
+weekly_totals = baseline.groupby('Week')['duration_hours'].sum().reset_index()
 print(f"Found {len(weekly_totals)} weeks of data")
-print(f"Average weekly hours: {weekly_totals['Hours'].mean():.1f}")
+print(f"Average weekly hours: {weekly_totals['duration_hours'].mean():.1f}")
 
 # Monte Carlo Simulation on WEEKLY TOTALS
 print("\n=== Running Monte Carlo Simulation ===")
@@ -25,7 +25,7 @@ results = []
 
 for _, week_row in weekly_totals.iterrows():
     week = week_row['Week']
-    base_hours = week_row['Hours']
+    base_hours = week_row['duration_hours']
     
     # Simulate with 20% variance
     simulated_hours = np.random.normal(base_hours, base_hours * 0.2, n_simulations)
@@ -53,13 +53,13 @@ print(f"✅ Saved simulation results to {output_dir}/simulation_results.csv")
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
 
 # Plot 1: Confidence intervals
-ax1.plot(summary['Week'], summary['mean'], 'b-', linewidth=2, label='Mean Hours')
+ax1.plot(summary['Week'], summary['mean'], 'b-', linewidth=2, label='Mean duration_hours')
 ax1.fill_between(summary['Week'], summary['lo'], summary['hi'], alpha=0.3, label='95% CI')
 ax1.axhline(y=40, color='r', linestyle='--', label='Federal 40h Limit')
 ax1.axhline(y=20, color='orange', linestyle='--', label='Federal 20h Limit')
 ax1.set_xlabel('Week')
-ax1.set_ylabel('Hours')
-ax1.set_title('Monte Carlo Simulation: Weekly Work Hours with Confidence Intervals')
+ax1.set_ylabel('duration_hours')
+ax1.set_title('Monte Carlo Simulation: Weekly Work duration_hours with Confidence Intervals')
 ax1.legend()
 ax1.grid(True, alpha=0.3)
 
