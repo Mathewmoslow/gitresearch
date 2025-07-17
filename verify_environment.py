@@ -28,26 +28,26 @@ def check_package_versions():
     results = []
     issues = []
     
-    # Critical packages for this research
+    # Critical packages for this research - EXACT versions from requirements_lock.txt
     critical_packages = {
         'pandas': {
-            'min_version': '2.3.1',
+            'exact_version': '2.3.1',
             'computation_test': lambda pd: pd.DataFrame({'x': [1, 2, 3]})['x'].mean() == 2.0
         },
         'numpy': {
-            'min_version': '2.3.1',
+            'exact_version': '2.3.1',
             'computation_test': lambda np: np.array([1, 2, 3]).mean() == 2.0
         },
         'matplotlib': {
-            'min_version': '3.10.3',
+            'exact_version': '3.10.3',
             'computation_test': lambda mpl: True  # Visual library, no computation test
         },
         'seaborn': {
-            'min_version': '0.13.2',
+            'exact_version': '0.13.2',
             'computation_test': lambda sns: True
         },
         'scipy': {
-            'min_version': '1.16.0',
+            'exact_version': '1.16.0',
             'computation_test': lambda sp: abs(sp.stats.norm.cdf(0) - 0.5) < 1e-10
         }
     }
@@ -57,8 +57,8 @@ def check_package_versions():
             package = __import__(package_name)
             version = package.__version__
             
-            # Version check
-            version_ok = version >= requirements['min_version']
+            # Exact version check
+            version_ok = version == requirements['exact_version']
             
             # Computation check
             computation_ok = requirements['computation_test'](package)
@@ -67,7 +67,7 @@ def check_package_versions():
                 results.append(f"✅ {package_name} {version}")
             else:
                 if not version_ok:
-                    issues.append(f"{package_name} version {version} < {requirements['min_version']}")
+                    issues.append(f"{package_name} version {version} != required {requirements['exact_version']}")
                 if not computation_ok:
                     issues.append(f"{package_name} computation test failed")
                     
