@@ -31,23 +31,23 @@ def check_package_versions():
     # Critical packages for this research
     critical_packages = {
         'pandas': {
-            'min_version': '2.0.0',
+            'min_version': '2.3.1',
             'computation_test': lambda pd: pd.DataFrame({'x': [1, 2, 3]})['x'].mean() == 2.0
         },
         'numpy': {
-            'min_version': '1.24.0',
+            'min_version': '2.3.1',
             'computation_test': lambda np: np.array([1, 2, 3]).mean() == 2.0
         },
         'matplotlib': {
-            'min_version': '3.5.0',
-            'computation_test': lambda mpl: True  # Visual library, no computation test
+            'min_version': '3.10.3',
+            'computation_test': lambda mpl: True
         },
         'seaborn': {
-            'min_version': '0.12.0',
+            'min_version': '0.13.2',
             'computation_test': lambda sns: True
         },
         'scipy': {
-            'min_version': '1.10.0',
+            'min_version': '1.16.0',
             'computation_test': lambda sp: abs(sp.stats.norm.cdf(0) - 0.5) < 1e-10
         }
     }
