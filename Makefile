@@ -133,13 +133,6 @@ dashboard: venv verify-env
 	$(VENV_PYTHON) scripts/final_dashboard.py
 	@echo "✅ Dashboard created at $(OUTPUT_DIR)/final_dashboard.png"
 
-# Run comprehensive report
-.PHONY: report
-report: venv verify-env
-	@echo "\n=== Generating Comprehensive Report ==="
-	$(VENV_PYTHON) scripts/comprehensive_report.py
-	@echo "✅ Report created at $(OUTPUT_DIR)/COMPREHENSIVE_ANALYSIS.md"
-
 # Run evidence-based analysis
 .PHONY: evidence
 evidence: venv verify-env
@@ -149,7 +142,7 @@ evidence: venv verify-env
 
 # Run all reports and visualizations
 .PHONY: all-reports
-all-reports: dashboard report evidence integrity-report
+all-reports: dashboard evidence integrity-report
 	@echo "✅ All reports and visualizations complete!"
 
 # Full pipeline with all analyses and reports
@@ -185,7 +178,6 @@ help:
 	@echo ""
 	@echo "REPORT TARGETS:"
 	@echo "  make dashboard   - Create final dashboard visualization"
-	@echo "  make report      - Generate comprehensive analysis report"
 	@echo "  make evidence    - Generate evidence-based BSN analysis"
 	@echo "  make all-reports - Generate all reports and visualizations"
 	@echo ""
