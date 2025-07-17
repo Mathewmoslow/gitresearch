@@ -39,7 +39,7 @@ def check_package_versions():
             'computation_test': lambda np: np.array([1, 2, 3]).mean() == 2.0
         },
         'matplotlib': {
-            'min_version': '3.10.0',
+            'min_version': '3.10.3',
             'computation_test': lambda mpl: True  # Visual library, no computation test
         },
         'seaborn': {
